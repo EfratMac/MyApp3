@@ -1,29 +1,26 @@
-package efrat.clockit;
+package efrat.clockit.controller;
 
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import efrat.clockit.database.EmployeeDAO;
+import efrat.clockit.recycler.AttendanceDataSource;
+import efrat.clockit.R;
 
 public class MainActivity extends AppCompatActivity {
-
-    FloatingActionButton fabIn, fabOut;
 
 
 
@@ -34,64 +31,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+       // changeFragment(new MainFragment());
+
+     //   new AttendanceDataSource(this);
 
 
-        findViewById(R.id.fabIn).setOnClickListener((v)-> {
-
-            System.out.println(EmployeeDAO.getInstance(this).getAttendanceObj().toString());
-
-
-//            new AlertDialog.Builder(this).
-//                    //setTitle("דיווח נוכחות").
-//                    setMessage("האם לדווח כניסה?").setNegativeButton("לא", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    finish();
-//                }
-//            }).setPositiveButton("כן", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//
-//                    System.out.println("111111111111");
-//
-//                }
-//            }).show();
-
-
-
-            new EntranceCustomDialog().show(getSupportFragmentManager(),"dialog");
-//
-//
-//            if(EmployeeDAO.getInstance(this).add("entrance"))
-//              Toast.makeText(this,"כניסה דווחה בשעה "+getCurrentTime(),Toast.LENGTH_SHORT).show();
-//          else
-//              Toast.makeText(this,"כניסה כבר דווחה",Toast.LENGTH_SHORT).show();
-
-        });
-
-
-        findViewById(R.id.fabOut).setOnClickListener((v)-> {
-
-            new ExitCustomDialog().show(getSupportFragmentManager(),"dialog");
-
-//            System.out.println(EmployeeDAO.getInstance(this).getAttendanceObj().toString());
-//
-//            if(EmployeeDAO.getInstance(this).add("exit")) {
-//
-//                Toast.makeText(this,"יציאה דווחה בשעה "+getCurrentTime(),Toast.LENGTH_SHORT).show();
-//                EmployeeDAO.getInstance(this).updateTotal();
-//                System.out.println(EmployeeDAO.getInstance(this).getAttendanceObj().toString());
-//
-//            }
-//            else
-//                Toast.makeText(this,"יציאה כבר דווחה",Toast.LENGTH_SHORT).show();
-
-        });
-
-
-
-
-
+        changeFragment(new CurrentReportFragment());
 
 
 
@@ -154,5 +99,12 @@ public class MainActivity extends AppCompatActivity {
         String currentTime= new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(cal.getTime());
 
         return currentTime;
+    }
+
+
+    private void changeFragment(Fragment f){
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame,f).commit();
+
     }
 }

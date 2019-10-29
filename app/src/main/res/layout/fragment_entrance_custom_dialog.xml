@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#051568"
     android:backgroundTint="#011696"
-    tools:context=".EntranceCustomDialog">
+    tools:context=".controller.EntranceCustomDialog">
 
     <TextView
         android:id="@+id/textView"

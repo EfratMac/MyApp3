@@ -176,9 +176,9 @@ public class EmployeeDAO {
         do{
 
             //int id=cursor.getInt(0);
-            String date=cursor.getString(1);
-            String entrance=cursor.getString(2);
-            String exit=cursor.getString(3);
+            String date=cursor.getString(cursor.getColumnIndex("date"));
+            String entrance=cursor.getString(cursor.getColumnIndex("entrance"));
+            String exit=cursor.getString(cursor.getColumnIndex("exit"));
 
             report.add(new Attendance(date,entrance,exit));
 
@@ -199,7 +199,7 @@ public class EmployeeDAO {
         String [] projection={"date","entrance","exit"};
         String selection= "date LIKE ?";
         // String [] selectionArgs={getCurrent("dd/MM/yyyy")};
-        String [] selectionArgs={"28/10/2019"};
+        String [] selectionArgs={getCurrent("dd/MM/yyyy")};
 
         String date;
         String in;
