@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import efrat.clockit.Other;
 import efrat.clockit.R;
 import efrat.clockit.controller.EntranceCustomDialog;
 import efrat.clockit.controller.ExitCustomDialog;
@@ -43,6 +45,23 @@ public class MainFragment extends Fragment {
 
         FloatingActionButton fabIn= view.findViewById(R.id.fabIn);
         FloatingActionButton fabOut= view.findViewById(R.id.fabOut);
+        TextView tvMsg=view.findViewById(R.id.tvMsg);
+
+        int hour = Integer.parseInt(Other.getCurrent("HH:mm:ss").substring(0, 2));
+
+        if(hour>5 && hour<12)
+            tvMsg.setText("בוקר טוב");
+        else if(hour<16)
+            tvMsg.setText("צהריים טובים");
+        else if(hour<18)
+            tvMsg.setText("אחר הצהרים טובים");
+        else if (hour<20)
+            tvMsg.setText("ערב טוב");
+        else
+            tvMsg.setText("לילה טוב");
+
+
+
 
         fabIn.setOnClickListener(v->{
 

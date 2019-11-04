@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "746027380448",
+    "firebase_url": "https://clockit-beec9.firebaseio.com",
+    "project_id": "clockit-beec9",
+    "storage_bucket": "clockit-beec9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746027380448:android:440347e530514e1ac92a85",
+        "android_client_info": {
+          "package_name": "efrat.clockit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746027380448-egpf1d08tj9uafbud6v26f667mm5hk8q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "efrat.clockit",
+            "certificate_hash": "852c166d11abdcc437e01bed8491522241c6180b"
+          }
+        },
+        {
+          "client_id": "746027380448-e9hlngjuvqhdhptfv84veiffg30rr85u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuXarw6bwVu3T3diHuV-W1HlP1VL2-seA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746027380448-e9hlngjuvqhdhptfv84veiffg30rr85u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

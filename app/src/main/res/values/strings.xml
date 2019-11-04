@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">ClockIt</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">פרטים אישיים</string>
+    <string name="action_viewReport">צפייה בדוח נוכחות</string>
+    <string name="action_data">נתונים</string>
+    <string name="action_holidays">חגים</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

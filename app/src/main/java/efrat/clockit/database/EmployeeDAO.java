@@ -153,7 +153,6 @@ public class EmployeeDAO {
 
     }
 
-
     //READ - get the whole report.
     public List<Attendance> getAttendanceReport(){
 
@@ -163,10 +162,10 @@ public class EmployeeDAO {
         String [] projection={"date","entrance","exit"};
 
         //TODO: HERE WE CAN CHOOSE WHICH DATES TO SEE AND THEREFORE TO CHOOSE A SPECIFIC MONTH.
-//        String selection= "date like ?";
-//        String [] selectionArgs={"%/02/%"}; //this will give all the days in february (of all years).
+        String selection= "date like ?";
+        String [] selectionArgs={"%/11/2019"}; //this will give all the days in february (of all years).
 
-        Cursor cursor = db.query(EmployeeDB.TABLE2_NAME, projection, null, null, null, null, null);
+        Cursor cursor = db.query(EmployeeDB.TABLE2_NAME, projection, selection, selectionArgs, null, null, null);
 
         if( !cursor.moveToFirst()) //if the table is empty.
             return report;        //we have to return a list so in this case it will return an empty list.
@@ -191,8 +190,6 @@ public class EmployeeDAO {
     }
 
 
-
-
     //READ - get a certain data.
     public Attendance getAttendanceObj(){
 
@@ -207,7 +204,6 @@ public class EmployeeDAO {
 
         Cursor cursor = db.query(EmployeeDB.TABLE2_NAME, projection, selection, selectionArgs, null, null, null);
 
-
        cursor.moveToFirst();
 
 
@@ -219,14 +215,11 @@ public class EmployeeDAO {
 
             } while (cursor.moveToNext());
 
-
-
         cursor.close();
 
         return new Attendance(date,in,out);
 
     }
-
 
     public void updateTotal(){
 
@@ -267,6 +260,9 @@ public class EmployeeDAO {
         }
 
     }
+
+
+
 
 
     //HELPER METHOD

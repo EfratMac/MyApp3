@@ -1,26 +1,36 @@
 package efrat.clockit.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import efrat.clockit.RegisterActivity;
 import efrat.clockit.recycler.AttendanceDataSource;
 import efrat.clockit.R;
 
 public class MainActivity extends AppCompatActivity {
+
+    private BottomNavigationView bnv;
 
 
 
@@ -31,18 +41,66 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       // changeFragment(new MainFragment());
+        changeFragment(new MainFragment());
+
+   //     bnv.findViewById(R.id.bnv);
+
+
+        bnv=findViewById(R.id.bnv);
+
+        bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch(menuItem.getItemId()){
+
+                    case R.id.navigation_main:
+                        changeFragment(new MainFragment());
+                        break;
+                    case R.id.navigation_report:
+                        changeFragment(new CurrentReportFragment());
+                        break;
+
+                    default:
+                        return false;
+                }
+
+                return true;
+            }
+        });
+
+
+
 
      //   new AttendanceDataSource(this);
 
 
-        changeFragment(new CurrentReportFragment());
+    //   changeFragment(new CurrentReportFragment());
 
 
 
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+        //a listener to the status of the user authentication
+        FirebaseAuth.getInstance().addAuthStateListener(firebaseAuth -> {
+
+            FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+
+            //if there is no user yet, go to the Register Activity first.
+            if (user==null){
+                startActivity(new Intent(this, RegisterActivity.class));
+                finish();
+            }
+        });
+
+
+    }
 
     public  Boolean getSSID() {
 
